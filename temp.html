@@ -1,0 +1,244 @@
+SELECT *  FROM `words` WHERE `word` LIKE 'af___'
+SELECT *  FROM `words` WHERE (`word` LIKE 'af_') or (`word` LIKE 'af___') or (`word` LIKE 'af____')
+
+SELECT * FROM `words` WHERE 
+(`word` = 'Abadoy') or 
+(`word` like '_badoy') or 
+(`word` like 'A_adoy') or (`word` like 'Ab_doy') or (`word` like 'Aba_oy') or (`word` like 'Abad_y') or (`word` like 'Abado_')
+
+
+SELECT *  FROM `words` WHERE 
+(`word` like 'afnadi') or     //Bitta harfni to'g'irlash 
+(`word` LIKE '_fnadi') or 
+(`word` like 'a_nadi') or 
+(`word` like 'af_adi') or 
+(`word` like 'afn_di') or 
+(`word` like 'afna_i') or 
+(`word` like 'afnad_') or 
+(`word` LIKE '__nadi') or    ///  Ikkita harfni to'g'irlash
+(`word` like 'a__adi') or 
+(`word` like 'af__di') or 
+(`word` like 'afn__i') or 
+(`word` like 'afna__') or 
+(`word` like '_afandi')  or   ///  Harf tushib qolganda
+(`word` like 'a_fandi')  or
+(`word` like 'af_andi')  or
+(`word` like 'afa_ndi')  or
+(`word` like 'afan_di')  or
+(`word` like 'afand_i')  or
+(`word` like 'afandi_') 
+
+
+
+	$db2 = mysql_query("select * from `words`");
+	while($mdb2 = mysql_fetch_array($db2)){
+		$s = $mdb2['word'];
+		
+		$id = $mdb2['w_id'];
+		//$s = str_replace("'","&#39;",$s);
+		$s = str_replace(" ","",$s);
+		
+		mysql_query("UPDATE `words` SET `word` = '$s' WHERE `w_id` = '$id'");
+}
+
+
+-------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+
+<span onclick="myFunction()">Try it</span>
+
+<div id="myDIV">
+This is my DIV element.
+mana shu chiqishi keark
+
+</div>
+
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+----------------------------------------------
+Menyu
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ 
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+<h2>Clickable Dropdown</h2>
+<p>Click on the button to open the dropdown menu.</p>
+
+<div class="dropdown">
+ qalay sadbasdias dashdj askjdhkasjd <span onclick="myFunction()" class="dropbtn">Dropdown</span> salom
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
+------------------------------------- Menyu-------------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  background: yellow;
+  border: 1px solid black;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<div oncontextmenu="myFunction()" contextmenu="mymenu">
+<p>Right-click inside this box to see the context menu!
+
+<menu type="context" id="mymenu">
+  <menuitem label="Refresh" onclick="window.location.reload();" icon="ico_reload.png"></menuitem>
+  <menu label="Share on...">
+  <menuitem label="Twitter" icon="ico_twitter.png" onclick="window.open('//twitter.com/intent/tweet?text=' + window.location.href);"></menuitem>
+  <menuitem label="Facebook" icon="ico_facebook.png" onclick="window.open('//facebook.com/sharer/sharer.php?u=' + window.location.href);"></menuitem>
+  </menu>
+  <menuitem label="Email This Page" onclick="window.location='mailto:?body='+window.location.href;"></menuitem>
+</menu>
+
+</div>
+
+<script>
+function myFunction() {
+  alert("You right-clicked inside the div!");
+}
+</script>
+
+<p><strong>Note:</strong> The contextmenu <strong>attribute</strong> only works in Firefox!</p>
+
+</body>
+</html>
+
+------------------------- Kiril 
+<div class="col-6">
+		  <h4>Kirilcha shakli</h4>
+		  	<?php
+
+			$ln = count($jword);
+			for($i = 0; $i <= $ln;$i++){
+				
+				if ($jword[$i][1] == ''){
+					
+					echo (" <span class='tugri'>".kiril($jword[$i][0])."</span> ");
+					
+				}
+				
+				if ((count($jword[$i])==2) and (strtolower($jword[$i][0]) == $jword[$i][0] )){
+					echo (" <span class='tugri'>".kiril($jword[$i][1])." </span> ");
+				}
+				
+				if ((count($jword[$i])==2) and (strtolower($jword[$i][0]) != $jword[$i][0] )){
+					echo (" <span class='bitta'>".kiril($jword[$i][0])." </span> ");
+				}
+				
+				if (count($jword[$i])>2){
+					?>
+					  <div class="btn-group">
+					<span class="kup  dropdown-toggle" id="kup<?php echo($i);?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo(kiril($jword[$i][0])) ;?> 
+					</span>
+  						<div class="dropdown-menu" aria-labelledby="kup<?php echo($i) ;?>">
+			<?php
+					foreach ($jword[$i] as $val){
+						?>
+							<a class="dropdown-item" onClick='javascript:kup(<?php echo($i) ;?>,"<?php echo(appostr($val)) ;?>");'><?php echo(kiril($val)) ;?></a>
+							<?php 
+					}
+					?>
+						</div>
+					</div>
+			<?php
+ 
+				}
+			}
+			
+			?>
+         
+		  </div>
+
